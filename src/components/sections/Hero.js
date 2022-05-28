@@ -53,9 +53,8 @@ const Hero = ({
       <div className="container-sm">
         <div className={innerClasses}>
           <p
-            className="reveal-from-bottom"
+            className="reveal-from-bottom text-color-hight"
             data-reveal-delay="400"
-            style={{ color: "blue" }}
           >
             Lớp học Cầu Vồng là một dự án phi lợi nhuận nhằm lan tỏa tri thức
             cho trẻ em có hoàn cảnh khó khăn.

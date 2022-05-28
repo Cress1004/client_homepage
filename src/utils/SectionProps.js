@@ -31,7 +31,7 @@ export const SectionProps = {
 }
 
 // Section split props
-export const SectionSplitProps = {
+export const SectionHiringProps = {
   types: {
     ...SectionShared.types,
     invertMobile: PropTypes.bool,
@@ -49,7 +49,7 @@ export const SectionSplitProps = {
 }
 
 // Section tiles props
-export const SectionTilesProps = {
+export const SectionIntroProps = {
   types: {
     ...SectionShared.types,
     pushLeft: PropTypes.bool

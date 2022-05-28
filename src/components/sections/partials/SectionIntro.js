@@ -17,7 +17,7 @@ const defaultProps = {
   tag: "h2",
 };
 
-const SectionHeader = ({ className, data, children, tag, ...props }) => {
+const SectionIntro = ({ className, data, children, tag, ...props }) => {
   const classes = classNames("section-header", className);
 
   const Component = tag;
@@ -29,7 +29,7 @@ const SectionHeader = ({ className, data, children, tag, ...props }) => {
         <div {...props} className={classes}>
           <div className="reveal-from-bottom" data-reveal-delay="800">
             <div className="container">
-              <div style={{ float: "left", width: "65%" }}>
+              <div style={{ float: "left", width: "65%", textAlign: "justify" }}>
                 {children}
                 {data.title && (
                   <Component
@@ -77,7 +77,7 @@ const SectionHeader = ({ className, data, children, tag, ...props }) => {
   );
 };
 
-SectionHeader.propTypes = propTypes;
-SectionHeader.defaultProps = defaultProps;
+SectionIntro.propTypes = propTypes;
+SectionIntro.defaultProps = defaultProps;
 
-export default SectionHeader;
+export default SectionIntro;
