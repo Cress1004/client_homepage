@@ -14,6 +14,7 @@ import { calcFileSize } from "../common/function";
 import { useState } from "react";
 import { useEffect } from "react";
 import apis from "../apis";
+import ThanksPage from "./ThanksPage";
 
 const { Item } = Form;
 const { Option } = Select;
@@ -23,7 +24,6 @@ function UploadCV(props) {
   const { t } = useTranslation();
   const [classList, setClasses] = useState([]);
   const [questions, setQuestions] = useState([]);
-//   const [answers, setAnswers] = useState([]);
   const [page, setPage] = useState(1);
   const [isSubmmited, setSubmitted] = useState(false);
   const cvInfo = JSON.parse(localStorage.getItem("cvInfo"));
@@ -81,7 +81,7 @@ function UploadCV(props) {
   });
 
   const checkFreeTime = (currWeekday, currNoon) => {
-    if (cvInfo.freeTime.length) {
+    if (cvInfo?.freeTime.length) {
       var freeTime = cvInfo.freeTime.find(
         (item) => item.toString() === `${currWeekday}-${currNoon}`.toString()
       );
@@ -131,7 +131,7 @@ function UploadCV(props) {
       freeTime: cvInfo && cvInfo.freeTime ? cvInfo.freeTime : [],
       note: cvInfo?.note,
       answers: cvInfo && cvInfo.answers ? cvInfo.answers : [],
-      audioFile: "",
+      // audioFile: "",
     },
     validationSchema: Yup.object().shape({
       userName: Yup.string().required(t("required_name_message")),
@@ -154,6 +154,10 @@ function UploadCV(props) {
         .test("type", t("only_pdf_accept"), (value) => {
           return value && ["application/pdf"].includes(value.type);
         }),
+      // audioFile: Yup.mixed()
+      // .test("type", t("only_mp3_mp4_accept"), (value) => {
+      //   return value && ["application/pdf"].includes(value.type);
+      // }),
       freeTime: Yup.array()
         .of(Yup.string())
         .test({
@@ -165,9 +169,13 @@ function UploadCV(props) {
       setTimeout(() => {
         const formData = new FormData();
         for (var key in values) {
-          formData.append(key, values[key]);
+          const value = values[key];
+          if (Array.isArray(value)) {
+            formData.append(key, JSON.stringify(value));
+          } else formData.append(key, value);
         }
         fetchUploadCV(formData);
+        setSubmitting(false);
       }, 400);
     },
   });
@@ -192,15 +200,19 @@ function UploadCV(props) {
 
   const changeAnswer = (e, question) => {
     const answers = formik.values.answers;
-    const currentAnswerIndex = answers.findIndex(item => item.questionId === question._id);
-    if(currentAnswerIndex !== -1) {
-        answers[currentAnswerIndex].questionId = question._id;
-        answers[currentAnswerIndex].content = e.target.value;
-    } else answers.push({
-        questionId:question._id,
-        content: e.target.value
-    })
-    formik.setFieldValue("answers", answers)
+    const currentAnswerIndex = answers.findIndex(
+      (item) => item.questionId === question._id
+    );
+    if (currentAnswerIndex !== -1) {
+      answers[currentAnswerIndex].questionId = question._id;
+      answers[currentAnswerIndex].content = e.target.value;
+    } else
+      answers.push({
+        questionId: question._id,
+        content: e.target.value,
+      });
+    // answers
+    formik.setFieldValue("answers", answers);
   };
 
   const changePage = (i) => {
@@ -208,8 +220,6 @@ function UploadCV(props) {
     setPage(currentPage + i);
     window.localStorage.setItem("cvInfo", JSON.stringify(formik.values));
   };
-
-  //   const changePrevPage =
 
   const fieldError = (formik) => {
     return (
@@ -222,7 +232,7 @@ function UploadCV(props) {
     );
   };
 
-  //   if (isSubmmited) return <ThanksPage />;
+  if (!isSubmmited) return <ThanksPage />;
 
   return (
     <div
@@ -317,7 +327,6 @@ function UploadCV(props) {
                           </span>
                         )}
                     </Item>
-                    <hr />
                     <Item style={{ padding: "-30px" }}>
                       <Button
                         onClick={() => changePage(1)}
@@ -334,14 +343,21 @@ function UploadCV(props) {
                     <h6>{t("answer_below_questions")}</h6>
                     {questions?.map((question) => (
                       <div>
-                        <Item label={question.content}>
+                        <Item
+                          label={question.content}
+                          required={question.isRequired}
+                        >
                           <TextArea
                             rows={3}
                             className="upload-cv__note-text"
                             onChange={(e) => changeAnswer(e, question)}
                             onBlur={formik.handleBlur}
                             placeholder={t("input_phone_number")}
-                            defaultValue={cvInfo?.answers.find(item => item.questionId === question._id)?.content}
+                            defaultValue={
+                              cvInfo?.answers.find(
+                                (item) => item.questionId === question._id
+                              )?.content
+                            }
                           />
                         </Item>
                       </div>
