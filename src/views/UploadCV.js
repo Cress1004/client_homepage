@@ -232,8 +232,6 @@ function UploadCV(props) {
     );
   };
 
-  if (!isSubmmited) return <ThanksPage />;
-
   return (
     <div
       style={{
@@ -242,221 +240,231 @@ function UploadCV(props) {
       }}
       className="reveal-from-right"
     >
-      <div className="upload-cv__title">{t("upload_cv")}</div>
-      <Form
-        layout="vertical"
-        className="upload-cv__form"
-        onSubmit={formik.handleSubmit}
-      >
-        <div>
-          {(() => {
-            switch (page) {
-              case 1:
-                return (
-                  <div>
-                    {" "}
-                    <Item label={t("user_name")} required>
-                      <Input
-                        name="userName"
-                        placeholder={t("input_name")}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        defaultValue={cvInfo ? cvInfo.userName : undefined}
-                      />
-                      {formik.errors.userName && formik.touched.userName && (
-                        <span className="custom__error-message">
-                          {formik.errors.userName}
-                        </span>
-                      )}
-                    </Item>
-                    <Item label={t("email")} required>
-                      <Input
-                        name="email"
-                        placeholder={t("input_email")}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        defaultValue={cvInfo ? cvInfo.email : undefined}
-                      />
-                      {formik.errors.email && formik.touched.email && (
-                        <span className="custom__error-message">
-                          {formik.errors.email}
-                        </span>
-                      )}
-                    </Item>
-                    <Item label={t("phone_number")} required>
-                      <Input
-                        name="phoneNumber"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        placeholder={t("input_phone_number")}
-                        defaultValue={cvInfo?.phoneNumber || undefined}
-                      />
-                      {formik.errors.phoneNumber &&
-                        formik.touched.phoneNumber && (
-                          <span className="custom__error-message">
-                            {formik.errors.phoneNumber}
-                          </span>
-                        )}
-                    </Item>
-                    <Item label={t("register_class")} required>
-                      <Select
-                        showSearch
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
-                        }
-                        placeholder={t("input_select_class")}
-                        onChange={(value) =>
-                          formik.setFieldValue("selectedClass", value)
-                        }
-                        defaultValue={cvInfo?.selectedClass || undefined}
-                      >
-                        {classList.length
-                          ? classList.map((option) => (
-                              <Option key={option._id} value={option._id}>
-                                {option.name}
-                              </Option>
-                            ))
-                          : null}
-                      </Select>
-                      {formik.errors.selectedClass &&
-                        formik.touched.selectedClass && (
-                          <span className="custom__error-message">
-                            {formik.errors.selectedClass}
-                          </span>
-                        )}
-                    </Item>
-                    <Item style={{ padding: "-30px" }}>
-                      <Button
-                        onClick={() => changePage(1)}
-                        className={`upload-cv__button-next`}
-                      >
-                        {t("next_page")}
-                      </Button>
-                    </Item>
-                  </div>
-                );
-              case 2:
-                return (
-                  <div>
-                    <h6>{t("answer_below_questions")}</h6>
-                    {questions?.map((question) => (
+      {isSubmmited ? (
+        <ThanksPage />
+      ) : (
+        <>
+          {" "}
+          <div className="upload-cv__title">{t("upload_cv")}</div>
+          <Form
+            layout="vertical"
+            className="upload-cv__form"
+            onSubmit={formik.handleSubmit}
+          >
+            <div>
+              {(() => {
+                switch (page) {
+                  case 1:
+                    return (
                       <div>
-                        <Item
-                          label={question.content}
-                          required={question.isRequired}
-                        >
-                          <TextArea
-                            rows={3}
-                            className="upload-cv__note-text"
-                            onChange={(e) => changeAnswer(e, question)}
+                        {" "}
+                        <Item label={t("user_name")} required>
+                          <Input
+                            name="userName"
+                            placeholder={t("input_name")}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            defaultValue={cvInfo ? cvInfo.userName : undefined}
+                          />
+                          {formik.errors.userName &&
+                            formik.touched.userName && (
+                              <span className="custom__error-message">
+                                {formik.errors.userName}
+                              </span>
+                            )}
+                        </Item>
+                        <Item label={t("email")} required>
+                          <Input
+                            name="email"
+                            placeholder={t("input_email")}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            defaultValue={cvInfo ? cvInfo.email : undefined}
+                          />
+                          {formik.errors.email && formik.touched.email && (
+                            <span className="custom__error-message">
+                              {formik.errors.email}
+                            </span>
+                          )}
+                        </Item>
+                        <Item label={t("phone_number")} required>
+                          <Input
+                            name="phoneNumber"
+                            onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             placeholder={t("input_phone_number")}
-                            defaultValue={
-                              cvInfo?.answers.find(
-                                (item) => item.questionId === question._id
-                              )?.content
-                            }
+                            defaultValue={cvInfo?.phoneNumber || undefined}
                           />
+                          {formik.errors.phoneNumber &&
+                            formik.touched.phoneNumber && (
+                              <span className="custom__error-message">
+                                {formik.errors.phoneNumber}
+                              </span>
+                            )}
+                        </Item>
+                        <Item label={t("register_class")} required>
+                          <Select
+                            showSearch
+                            filterOption={(input, option) =>
+                              option.props.children
+                                .toLowerCase()
+                                .indexOf(input.toLowerCase()) >= 0
+                            }
+                            placeholder={t("input_select_class")}
+                            onChange={(value) =>
+                              formik.setFieldValue("selectedClass", value)
+                            }
+                            defaultValue={cvInfo?.selectedClass || undefined}
+                          >
+                            {classList.length
+                              ? classList.map((option) => (
+                                  <Option key={option._id} value={option._id}>
+                                    {option.name}
+                                  </Option>
+                                ))
+                              : null}
+                          </Select>
+                          {formik.errors.selectedClass &&
+                            formik.touched.selectedClass && (
+                              <span className="custom__error-message">
+                                {formik.errors.selectedClass}
+                              </span>
+                            )}
+                        </Item>
+                        <Item style={{ padding: "-30px" }}>
+                          <Button
+                            onClick={() => changePage(1)}
+                            className={`upload-cv__button-next`}
+                          >
+                            {t("next_page")}
+                          </Button>
                         </Item>
                       </div>
-                    ))}{" "}
-                    <Item style={{ padding: "-30px" }}>
-                      <Button
-                        onClick={() => changePage(-1)}
-                        className={`upload-cv__button-prev`}
-                      >
-                        {t("prev_page")}
-                      </Button>
-                      <Button
-                        onClick={() => changePage(1)}
-                        className={`upload-cv__button-next`}
-                      >
-                        {t("next_page")}
-                      </Button>
-                    </Item>
-                  </div>
-                );
-              case 3:
-                return (
-                  <>
-                    <Item label={t("uploads_your_cv")} required>
-                      <input
-                        type="file"
-                        accept=".pdf"
-                        name="cvFile"
-                        onChange={(e) => handleChangePDFFile(e)}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.errors.cvFile && formik.touched.cvFile && (
-                        <span className="custom__error-message">
-                          {formik.errors.cvFile}
-                        </span>
-                      )}
-                    </Item>
-                    <Item label={t("uploads_intro_english_audio")}>
-                      <input
-                        type="file"
-                        accept=".mp3, .mp4"
-                        name="intro_audio"
-                        onChange={(e) => handleChangeAudioFile(e)}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.errors.audioFile && formik.touched.audioFile && (
-                        <span className="custom__error-message">
-                          {formik.errors.audioFile}
-                        </span>
-                      )}
-                    </Item>
-                    <Item label={t("free_time_table")} required>
-                      <Table
-                        className="upload-cv__free-time-table"
-                        columns={columns}
-                        dataSource={fixedData}
-                        pagination={false}
-                      ></Table>
-                      {formik.errors.freeTime && formik.touched.freeTime && (
-                        <span className="custom__error-message">
-                          {formik.errors.freeTime}
-                        </span>
-                      )}
-                    </Item>
-                    <Item label={t("free_time_note")}>
-                      <TextArea
-                        name="note"
-                        rows={3}
-                        className="upload-cv__note-text"
-                        onChange={formik.handleChange}
-                        defaultValue={cvInfo?.note || undefined}
-                      ></TextArea>
-                    </Item>
-                    <Item>
-                      <Button
-                        onClick={() => changePage(-1)}
-                        className={`upload-cv__button-prev`}
-                      >
-                        {t("prev_page")}
-                      </Button>
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        className={
-                          !fieldError(formik)
-                            ? "upload-cv__submit-button upload-cv__submit-button--disable"
-                            : "upload-cv__submit-button"
-                        }
-                        disabled={!fieldError(formik)}
-                      >
-                        {t("submit")}
-                      </Button>
-                    </Item>
-                  </>
-                );
-            }
-          })()}
-        </div>
-      </Form>
+                    );
+                  case 2:
+                    return (
+                      <div>
+                        <h6>{t("answer_below_questions")}</h6>
+                        {questions?.map((question) => (
+                          <div>
+                            <Item
+                              label={question.content}
+                              required={question.isRequired}
+                            >
+                              <TextArea
+                                rows={3}
+                                className="upload-cv__note-text"
+                                onChange={(e) => changeAnswer(e, question)}
+                                onBlur={formik.handleBlur}
+                                placeholder={t("input_phone_number")}
+                                defaultValue={
+                                  cvInfo?.answers.find(
+                                    (item) => item.questionId === question._id
+                                  )?.content
+                                }
+                              />
+                            </Item>
+                          </div>
+                        ))}{" "}
+                        <Item style={{ padding: "-30px" }}>
+                          <Button
+                            onClick={() => changePage(-1)}
+                            className={`upload-cv__button-prev`}
+                          >
+                            {t("prev_page")}
+                          </Button>
+                          <Button
+                            onClick={() => changePage(1)}
+                            className={`upload-cv__button-next`}
+                          >
+                            {t("next_page")}
+                          </Button>
+                        </Item>
+                      </div>
+                    );
+                  case 3:
+                    return (
+                      <>
+                        <Item label={t("uploads_your_cv")} required>
+                          <input
+                            type="file"
+                            accept=".pdf"
+                            name="cvFile"
+                            onChange={(e) => handleChangePDFFile(e)}
+                            onBlur={formik.handleBlur}
+                          />
+                          {formik.errors.cvFile && formik.touched.cvFile && (
+                            <span className="custom__error-message">
+                              {formik.errors.cvFile}
+                            </span>
+                          )}
+                        </Item>
+                        <Item label={t("uploads_intro_english_audio")}>
+                          <input
+                            type="file"
+                            accept=".mp3, .mp4"
+                            name="intro_audio"
+                            onChange={(e) => handleChangeAudioFile(e)}
+                            onBlur={formik.handleBlur}
+                          />
+                          {formik.errors.audioFile &&
+                            formik.touched.audioFile && (
+                              <span className="custom__error-message">
+                                {formik.errors.audioFile}
+                              </span>
+                            )}
+                        </Item>
+                        <Item label={t("free_time_table")} required>
+                          <Table
+                            className="upload-cv__free-time-table"
+                            columns={columns}
+                            dataSource={fixedData}
+                            pagination={false}
+                          ></Table>
+                          {formik.errors.freeTime &&
+                            formik.touched.freeTime && (
+                              <span className="custom__error-message">
+                                {formik.errors.freeTime}
+                              </span>
+                            )}
+                        </Item>
+                        <Item label={t("free_time_note")}>
+                          <TextArea
+                            name="note"
+                            rows={3}
+                            className="upload-cv__note-text"
+                            onChange={formik.handleChange}
+                            defaultValue={cvInfo?.note || undefined}
+                          ></TextArea>
+                        </Item>
+                        <Item>
+                          <Button
+                            onClick={() => changePage(-1)}
+                            className={`upload-cv__button-prev`}
+                          >
+                            {t("prev_page")}
+                          </Button>
+                          <Button
+                            type="primary"
+                            htmlType="submit"
+                            className={
+                              !fieldError(formik)
+                                ? "upload-cv__submit-button upload-cv__submit-button--disable"
+                                : "upload-cv__submit-button"
+                            }
+                            disabled={!fieldError(formik)}
+                          >
+                            {t("submit")}
+                          </Button>
+                        </Item>
+                      </>
+                    );
+                }
+              })()}
+            </div>
+          </Form>
+        </>
+      )}
     </div>
   );
 }
