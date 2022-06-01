@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 //import './App.css';
 import './assets/scss/style.scss';
+import './i18n';
 
 const history = createBrowserHistory();
 
