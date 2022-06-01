@@ -1,5 +1,15 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, Select, Table, message } from "antd";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Select,
+  Table,
+  message,
+  Row,
+  Col,
+} from "antd";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import "./style/upload-cv.scss";
@@ -465,6 +475,37 @@ function UploadCV(props) {
           </Form>
         </>
       )}
+      <Row
+        style={{
+          width: "100%",
+          position: "flex",
+          bottom: "0px",
+        }}
+      >
+        <Col span={12}></Col>
+        <Col
+          span={12}
+          style={{
+            textAlign: "right",
+            fontSize: "14px",
+          }}
+        >
+          <a href="https://forms.gle/6LHENFLi5t7fpumC9" target={"_blank"}>
+            {" "}
+            <span
+              style={{
+                fontWeight: "bold",
+                fontSize: "14px",
+                padding: "20px"
+              }}
+              className="text-color-primary"
+            >
+              {" "}
+              Phản hồi về hệ thống{" "}
+            </span>
+          </a>
+        </Col>
+      </Row>
     </div>
   );
 }
