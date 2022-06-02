@@ -46,5 +46,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://the-rainbow-class.herokuapp.com:5000"
+  "proxy": "https://the-rainbow-class.herokuapp.com:5000",
+  "homepage": "."
 }
