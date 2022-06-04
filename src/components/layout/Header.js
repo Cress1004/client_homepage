@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { MANAGER_APP_URL } from "../../config";
 
 const propTypes = {
   navPosition: PropTypes.string,
@@ -130,7 +131,7 @@ const Header = ({
                       </li>
                       <li>
                         <a
-                          href={`${process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL}/login`}
+                          href={MANAGER_APP_URL}
                           className="button button-primary button-wide-mobile button-sm"
                           onClick={closeMenu}
                         >
