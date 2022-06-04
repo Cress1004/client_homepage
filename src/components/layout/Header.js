@@ -135,6 +135,7 @@ const Header = ({
                           className="button button-primary button-wide-mobile button-sm"
                           onClick={closeMenu}
                         >
+                          {console.log(process.env.NODE_ENV)}
                           Đăng nhập
                         </a>
                       </li>
