@@ -239,7 +239,8 @@ const resources = {
       prev_page: "Quay lại",
       submit: "Gửi",
       free_time_note: "Ghi chú về thời gian rảnh",
-      uploads_intro_english_audio: "[Dành riêng cho TNV ứng tuyển dạy tiếng anh] Hãy gửi bản ghi âm/video ngắn bằng tiếng anh giới thiệu về bản thân.",
+      uploads_intro_english_audio:
+        "[Dành riêng cho TNV ứng tuyển dạy tiếng anh] Hãy gửi bản ghi âm/video ngắn bằng tiếng anh giới thiệu về bản thân.",
       //noti
       assign_success: "Đăng kí thành công",
       unassign_success: "Hủy đăng kí thành công",
