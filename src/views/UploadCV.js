@@ -141,7 +141,7 @@ function UploadCV(props) {
       freeTime: cvInfo && cvInfo.freeTime ? cvInfo.freeTime : [],
       note: cvInfo?.note,
       answers: cvInfo && cvInfo.answers ? cvInfo.answers : [],
-      // audioFile: "",
+      audioFile: "",
     },
     validationSchema: Yup.object().shape({
       userName: Yup.string().required(t("required_name_message")),
@@ -164,7 +164,7 @@ function UploadCV(props) {
         .test("type", t("only_pdf_accept"), (value) => {
           return value && ["application/pdf"].includes(value.type);
         }),
-      // audioFile: Yup.mixed()
+      audioFile: Yup.mixed(),
       // .test("type", t("only_mp3_mp4_accept"), (value) => {
       //   return value && ["application/pdf"].includes(value.type);
       // }),
@@ -221,7 +221,6 @@ function UploadCV(props) {
         questionId: question._id,
         content: e.target.value,
       });
-    // answers
     formik.setFieldValue("answers", answers);
   };
 
