@@ -13,6 +13,7 @@ const Home = () => {
       <FeaturesIntro />
       <FeaturesHiring invertMobile topDivider imageFill className="illustration-section-02" />
       <Events topDivider />
+      {console.log("hello")}
     </>
   );
 }
