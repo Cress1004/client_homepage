@@ -35,7 +35,7 @@ function CVPage2(props) {
               className="upload-cv__note-text"
               onChange={(e) => changeAnswer(e, question)}
               onBlur={formik.handleBlur}
-              placeholder={t("input_phone_number")}
+              placeholder={t("input_answer")}
               defaultValue={
                 cvInfo?.answers.find((item) => item.questionId === question._id)
                   ?.content

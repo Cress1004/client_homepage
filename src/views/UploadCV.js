@@ -1,18 +1,10 @@
 import React from "react";
-import {
-  Form,
-  message,
-  Row,
-  Col,
-} from "antd";
+import { Form, message, Row, Col } from "antd";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import "./style/upload-cv.scss";
 import * as Yup from "yup";
-import {
-  LIMIT_PDF_FILE_SIZE,
-  phoneRegExp,
-} from "../common/constant";
+import { LIMIT_PDF_FILE_SIZE, phoneRegExp } from "../common/constant";
 import { calcFileSize } from "../common/function";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -220,6 +212,8 @@ function UploadCV(props) {
                         cvInfo={cvInfo}
                       />
                     );
+                  default:
+                    return null;
                 }
               })()}
             </div>
@@ -241,7 +235,7 @@ function UploadCV(props) {
             fontSize: "14px",
           }}
         >
-          <a href="https://forms.gle/6LHENFLi5t7fpumC9" target={"_blank"}>
+          <a href="https://forms.gle/6LHENFLi5t7fpumC9" target={"_blank"} rel="noopener noreferrer">
             {" "}
             <span
               style={{
