@@ -1,10 +1,11 @@
-import { Form } from "antd";
+import { Form, Radio } from "antd";
 import { Table } from "antd";
 import { Button } from "antd";
 import { Input } from "antd";
 import { Checkbox } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { NOON_TIME, WEEKDAY } from "../../../common/constant";
+import RecorderComponent from "../../recorder/RecorderComponent";
 
 const { Item } = Form;
 const { TextArea } = Input;
@@ -19,6 +20,9 @@ function CVPage3(props) {
     checkFreeTime,
     cvInfo,
   } = props;
+
+  const [isRecord, setIsRecord] = useState(true);
+  // const [isVideo, setIsVideo] = useState(false);
 
   const columns = [
     {
@@ -43,6 +47,7 @@ function CVPage3(props) {
           />
         ),
       });
+    return null;
   });
 
   const fixedData = NOON_TIME.map((item) => ({
@@ -72,8 +77,51 @@ function CVPage3(props) {
     }
   };
 
+  const onChangeOption = (e) => {
+    setIsRecord(e.target.value);
+  };
+
+  // const handleChangeVideo = (value) => {
+  //   setIsVideo(value === "video" ? true : false);
+  // };
+
   return (
     <div>
+      <Item label={t("uploads_intro_english_audio")}>
+        <Radio.Group onChange={onChangeOption} defaultValue={isRecord}>
+          <Radio value={true}>{t("live_recording")}</Radio>
+          <Radio value={false}>{t("upload_file")}</Radio>
+        </Radio.Group>
+      </Item>
+      {isRecord ? (
+        // <Item label="select_type_recording">
+        //   <Select
+        //     placeholder={t("select_type_recording")}
+        //     onChange={(value) => handleChangeVideo(value)}
+        //     defaultValue="video"
+        //   >
+        //     <Option key="1" value="video">
+        //       Video
+        //     </Option>
+        //     <Option key="2" value="audio">
+        //       Audio
+        //     </Option>
+        //   </Select>
+        // </Item>
+        <RecorderComponent formik={formik} t={t} isVideo={false} />
+      ) : (
+        <>
+          <Item label="Tải lên file định dạng MP3/WAV/MP4">
+            <input
+              type="file"
+              accept=".mp3, .mp4, .wav"
+              name="intro_audio"
+              onChange={(e) => handleChangeAudioFile(e)}
+              onBlur={formik.handleBlur}
+            />
+          </Item>
+        </>
+      )}
       <Item label={t("uploads_your_cv")} required>
         <input
           type="file"
@@ -84,21 +132,6 @@ function CVPage3(props) {
         />
         {formik.errors.cvFile && formik.touched.cvFile && (
           <span className="custom__error-message">{formik.errors.cvFile}</span>
-        )}
-      </Item>
-      <Item label={t("uploads_intro_english_audio")}>
-        <p>[Định dạng MP3/MP4]</p>
-        <input
-          type="file"
-          accept=".mp3, .mp4"
-          name="intro_audio"
-          onChange={(e) => handleChangeAudioFile(e)}
-          onBlur={formik.handleBlur}
-        />
-        {formik.errors.audioFile && formik.touched.audioFile && (
-          <span className="custom__error-message">
-            {formik.errors.audioFile}
-          </span>
         )}
       </Item>
       <Item label={t("free_time_table")} required>
