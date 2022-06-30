@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { HEROKU_API_URL } from '../config';
+import { AZURE_API_URL } from '../config';
 
 const axiosClient = axios.create({
-  baseURL: `${HEROKU_API_URL}`,
+  baseURL: `${AZURE_API_URL}`,
   responseType: 'json',
   timeout: 15 * 1000,
   withCredentials: true
