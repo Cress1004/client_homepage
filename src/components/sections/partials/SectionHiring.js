@@ -110,13 +110,7 @@ const SectionHiring = ({ className, data, children, tag, ...props }) => {
                   {data.paragraph && <p className="m-8">{data.paragraph}</p>}
                   <p className="text-color-secondary mt-32">
                     Đăng kí làm Tình Nguyện Viên{" "}
-                    <a
-                      href={`${
-                        process.env.NODE_ENV === "production"
-                          ? process.env.REACT_APP_AZURE_MANAGER_PAGE_URL
-                          : process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL
-                      }login`}
-                    >
+                    <a href="/uploadCV">
                       <span
                         style={{
                           fontWeight: "bold",
@@ -131,11 +125,7 @@ const SectionHiring = ({ className, data, children, tag, ...props }) => {
                   </p>
                 </div>
                 <a
-                  href={`${
-                    process.env.NODE_ENV === "production"
-                      ? process.env.REACT_APP_AZURE_MANAGER_PAGE_URL
-                      : process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL
-                  }login`}
+                  href="/uploadCV"
                   style={{ float: "left", width: "40%", clear: "left" }}
                   className="reveal-from-left"
                   data-reveal-delay="400"
