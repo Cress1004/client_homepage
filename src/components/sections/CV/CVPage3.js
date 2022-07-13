@@ -50,7 +50,7 @@ function CVPage3(props) {
           />
         ),
       });
-      console.log(item)
+    console.log(item);
     return null;
   });
 
@@ -91,44 +91,6 @@ function CVPage3(props) {
 
   return (
     <div>
-      <span style={{ fontWeight: "bolder" }}>
-        {t("uploads_intro_english_audio")}
-      </span>
-      {isMobile ? null : (
-        <Radio.Group onChange={onChangeOption} defaultValue={isRecord}>
-          <Radio value={true}>{t("live_recording")}</Radio>
-          <Radio value={false}>{t("upload_file")}</Radio>
-        </Radio.Group>
-      )}
-      {isRecord && !isMobile ? (
-        // <Item label="select_type_recording">
-        //   <Select
-        //     placeholder={t("select_type_recording")}
-        //     onChange={(value) => handleChangeVideo(value)}
-        //     defaultValue="video"
-        //   >
-        //     <Option key="1" value="video">
-        //       Video
-        //     </Option>
-        //     <Option key="2" value="audio">
-        //       Audio
-        //     </Option>
-        //   </Select>
-        // </Item>
-        <RecorderComponent formik={formik} t={t} isVideo={false} />
-      ) : (
-        <>
-          <Item label="Tải lên file định dạng MP3/WAV/MP4">
-            <input
-              type="file"
-              accept=".mp3, .mp4, .wav"
-              name="intro_audio"
-              onChange={(e) => handleChangeAudioFile(e)}
-              onBlur={formik.handleBlur}
-            />
-          </Item>
-        </>
-      )}
       <Item label={t("uploads_your_cv")} required>
         <input
           type="file"
@@ -166,6 +128,45 @@ function CVPage3(props) {
           defaultValue={cvInfo?.note || undefined}
         ></TextArea>
       </Item>
+      <span style={{ fontWeight: "bolder"}}>
+        {t("uploads_intro_english_audio")}
+      </span>
+      <br />
+      {isMobile ? null : (
+        <Radio.Group onChange={onChangeOption} defaultValue={isRecord} style={{marginBottom: "10px"}}>
+          <Radio value={true}>{t("live_recording")}</Radio>
+          <Radio value={false}>{t("upload_file")}</Radio>
+        </Radio.Group>
+      )}
+      {isRecord && !isMobile ? (
+        // <Item label="select_type_recording">
+        //   <Select
+        //     placeholder={t("select_type_recording")}
+        //     onChange={(value) => handleChangeVideo(value)}
+        //     defaultValue="video"
+        //   >
+        //     <Option key="1" value="video">
+        //       Video
+        //     </Option>
+        //     <Option key="2" value="audio">
+        //       Audio
+        //     </Option>
+        //   </Select>
+        // </Item>
+        <RecorderComponent formik={formik} t={t} isVideo={false} />
+      ) : (
+        <>
+          <Item label="Tải lên file định dạng MP3/WAV/MP4">
+            <input
+              type="file"
+              accept=".mp3, .mp4, .wav"
+              name="intro_audio"
+              onChange={(e) => handleChangeAudioFile(e)}
+              onBlur={formik.handleBlur}
+            />
+          </Item>
+        </>
+      )}
       <Item>
         <Button
           onClick={() => changePage(-1)}

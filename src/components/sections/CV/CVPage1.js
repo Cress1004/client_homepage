@@ -11,7 +11,6 @@ function CVPage1(props) {
   const { t, formik, classList, cvInfo, changePage } = props;
   return (
     <div>
-      {" "}
       <Item label={t("user_name")} required>
         <Input
           name="userName"
