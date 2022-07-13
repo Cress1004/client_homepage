@@ -46,11 +46,13 @@
     .ant-table-tbody > tr > th,
     .ant-table-tbody > tr > td {
       text-align: center;
+      background-color: white;
     }
   }
   &__note-text {
     resize: none;
   }
+  // table-row-light
 }
 
 .thanks-page {

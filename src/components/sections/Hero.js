@@ -22,7 +22,7 @@ const Hero = ({
   ...props
 }) => {
   const outerClasses = classNames(
-    "hero section center-content",
+    "hero section center-content is-revealed",
     topOuterDivider && "has-top-divider",
     bottomOuterDivider && "has-bottom-divider",
     hasBgColor && "has-bg-color",
@@ -39,9 +39,10 @@ const Hero = ({
   return (
     <section {...props} className={outerClasses}>
       <h2 className="mt-0 mb-32 reveal-from-bottom" data-reveal-delay="200">
-        Lớp học Cầu Vồng {" "}
+        <span style={{ color: "rgb(249 0 246 / 88%)" }}>Lớp học Cầu Vồng</span>
+        <br />
         <span className="text-color-primary" data-reveal-delay="200">
-        The Rainbow Class
+          The Rainbow Class
         </span>
       </h2>
       <Image
@@ -53,7 +54,7 @@ const Hero = ({
       <div className="container-sm">
         <div className={innerClasses}>
           <p
-            className="reveal-from-bottom text-color-hight"
+            className="reveal-from-bottom text-color-low"
             data-reveal-delay="400"
           >
             Lớp học Cầu Vồng là một dự án phi lợi nhuận nhằm lan tỏa tri thức
@@ -62,11 +63,6 @@ const Hero = ({
             The Rainbow Class is a non-profit project aiming to bring education
             to underprivileged children.
           </p>
-          {/* <div
-            className="hero-figure reveal-from-bottom illustration-element-01"
-            data-reveal-value="20px"
-            data-reveal-delay="800"
-          ></div> */}
         </div>
       </div>
     </section>

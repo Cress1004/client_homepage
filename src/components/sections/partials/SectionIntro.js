@@ -22,6 +22,7 @@ const SectionIntro = ({ className, data, children, tag, ...props }) => {
 
   const Component = tag;
   const paragraph = data.paragraph;
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <>
@@ -29,46 +30,105 @@ const SectionIntro = ({ className, data, children, tag, ...props }) => {
         <div {...props} className={classes}>
           <div className="reveal-from-bottom" data-reveal-delay="800">
             <div className="container">
-              <div style={{ float: "left", width: "65%", textAlign: "justify" }}>
-                {children}
-                {data.title && (
-                  <Component
-                    className={classNames("mt-0", paragraph ? "mb-16" : "mb-0")}
-                  >
-                    {data.title}
-                  </Component>
-                )}
-                {paragraph.length > 0 && (
-                  <>
-                    {paragraph.map((i) => (
-                      <p className="m-16">{i}</p>
-                    ))}
-                  </>
-                )}
-              </div>
-              <div
-                style={{ float: "right", width: "35%" }}
-                className={classNames("mt-48")}
-              >
-                {" "}
-                <a
-                  href="https://facebook.com/therainbowclass/photos/a.184942138578408/1252316485174296/"
-                >
-                  <Image
-                    src={require("./../../../assets/images/vvc.jpg")}
-                    alt="vvc-image"
-                    className={classNames("m-16")}
-                  />
-                </a>
-                <a href="/">
+              {isMobile ? (
+                <>
                   {" "}
-                  <Image
-                    src={require("./../../../assets/images/member.jpg")}
-                    alt="apply-image"
-                    className={classNames("m-16")}
-                  />
-                </a>
-              </div>
+                  <div
+                    style={{
+                      textAlign: "justify",
+                    }}
+                  >
+                    {children}
+                    {data.title && (
+                      <Component
+                        className={classNames(
+                          "mt-0",
+                          paragraph ? "mb-16" : "mb-0"
+                        )}
+                      >
+                        {data.title}
+                      </Component>
+                    )}
+                    <a href="https://facebook.com/therainbowclass/photos/a.184942138578408/1252316485174296/">
+                      <Image
+                        src={require("./../../../assets/images/vvc.jpg")}
+                        alt="vvc-image"
+                      />
+                    </a>
+                    {paragraph.length > 0 && (
+                      <>
+                        {paragraph.map((i, index) => (
+                          <>
+                            {index === paragraph.length / 2 ? (
+                              <>
+                                <a href="/">
+                                  {" "}
+                                  <Image
+                                    src={require("./../../../assets/images/member.jpg")}
+                                    alt="apply-image"
+                                  />
+                                </a>
+                              </>
+                            ) : null}
+                            <p className="m-16">{i}</p>
+                          </>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <div
+                    style={{
+                      float: "left",
+                      width: "65%",
+                      textAlign: "justify",
+                    }}
+                  >
+                    {children}
+                    {data.title && (
+                      <Component
+                        className={classNames(
+                          "mt-0",
+                          paragraph ? "mb-16" : "mb-0"
+                        )}
+                      >
+                        {data.title}
+                      </Component>
+                    )}
+                    {paragraph.length > 0 && (
+                      <>
+                        {paragraph.map((i) => (
+                          <p className="m-16">{i}</p>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                  <div
+                    style={{ float: "right", width: "35%", clear: "right" }}
+                    className={classNames("mt-48")}
+                  >
+                    {" "}
+                    <a href="https://facebook.com/therainbowclass/photos/a.184942138578408/1252316485174296/">
+                      <Image
+                        src={require("./../../../assets/images/vvc.jpg")}
+                        alt="vvc-image"
+                        className={classNames("m-16")}
+                      />
+                    </a>
+                    <a href="/">
+                      {" "}
+                      <Image
+                        src={require("./../../../assets/images/member.jpg")}
+                        alt="apply-image"
+                        className={classNames("m-16")}
+                      />
+                    </a>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Hero className="illustration-section-01" />
-      <FeaturesIntro />
+      <FeaturesIntro className="illustration-section-02"/>
       <FeaturesHiring invertMobile topDivider imageFill className="illustration-section-02" />
       <Events topDivider />
       {console.log("hello")}
