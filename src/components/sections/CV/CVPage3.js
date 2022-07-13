@@ -21,6 +21,8 @@ function CVPage3(props) {
     cvInfo,
   } = props;
 
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
   const [isRecord, setIsRecord] = useState(true);
   // const [isVideo, setIsVideo] = useState(false);
 
@@ -29,7 +31,7 @@ function CVPage3(props) {
       title: "",
       dataIndex: "time",
       fixed: true,
-      width: 120,
+      width: isMobile ? 80 : 140,
     },
   ];
 
@@ -39,6 +41,7 @@ function CVPage3(props) {
         title: item.text,
         key: item.key,
         dataIndex: "status",
+        width: isMobile ? 70 : 100,
         render: (record) => (
           <Checkbox
             text={`${item.key}-${record.key}`}
@@ -47,6 +50,7 @@ function CVPage3(props) {
           />
         ),
       });
+      console.log(item)
     return null;
   });
 
@@ -87,13 +91,16 @@ function CVPage3(props) {
 
   return (
     <div>
-      <Item label={t("uploads_intro_english_audio")}>
+      <span style={{ fontWeight: "bolder" }}>
+        {t("uploads_intro_english_audio")}
+      </span>
+      {isMobile ? null : (
         <Radio.Group onChange={onChangeOption} defaultValue={isRecord}>
           <Radio value={true}>{t("live_recording")}</Radio>
           <Radio value={false}>{t("upload_file")}</Radio>
         </Radio.Group>
-      </Item>
-      {isRecord ? (
+      )}
+      {isRecord && !isMobile ? (
         // <Item label="select_type_recording">
         //   <Select
         //     placeholder={t("select_type_recording")}
@@ -140,6 +147,9 @@ function CVPage3(props) {
           columns={columns}
           dataSource={fixedData}
           pagination={false}
+          scroll={{ x: 400 }}
+          bordered={true}
+          rowClassName="upload-cv__table-row-light"
         />
         {formik.errors.freeTime && formik.touched.freeTime && (
           <span className="custom__error-message">

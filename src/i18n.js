@@ -44,7 +44,7 @@ const resources = {
       input_phone_number: "Nhập vào số điện thoại",
       input_answer: "Nhập vào câu trả lời của bạn",
       live_recording: "Ghi âm trực tiếp",
-      upload_file: "Tải lên từ máy tính",
+      upload_file: "Tải lên từ thiết bị",
       input_province: "Tỉnh/Thành phố",
       input_district: "Quận/Huyện",
       input_ward: "Phường/Xã",
@@ -102,7 +102,7 @@ const resources = {
       online_option: "Online",
       offline_option: "Offline",
       lesson_detail: "Chi tiết bài học",
-      paticipants: "Danh sách tình nguyện viên tham gia",
+      participants: "Danh sách tình nguyện viên tham gia",
       edit_lesson: "Sửa bài học",
       delete_lesson: "Xóa bài học",
       link_online: "Link",
@@ -243,6 +243,7 @@ const resources = {
       free_time_note: "Ghi chú về thời gian rảnh",
       uploads_intro_english_audio:
         "[Dành riêng cho TNV ứng tuyển dạy tiếng anh] Hãy gửi bản ghi âm/video ngắn bằng tiếng anh giới thiệu về bản thân.",
+      required_free_time: "Hãy điền vào thời gian rảnh",
       //noti
       assign_success: "Đăng kí thành công",
       unassign_success: "Hủy đăng kí thành công",

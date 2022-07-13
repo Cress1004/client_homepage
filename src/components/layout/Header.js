@@ -82,7 +82,7 @@ const Header = ({
         className="container"
         style={{
           backgroundImage: "url('/background.jpg')",
-          backgroundSize: "200%",
+          backgroundSize: "100%",
         }}
       >
         <div
@@ -130,7 +130,11 @@ const Header = ({
                       </li>
                       <li>
                         <a
-                          href={`${process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL}/login`}
+                          href={`${
+                            process.env.NODE_ENV === "production"
+                              ? process.env.REACT_APP_AZURE_MANAGER_PAGE_URL
+                              : process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL
+                          }login`}
                           className="button button-primary button-wide-mobile button-sm"
                           onClick={closeMenu}
                         >

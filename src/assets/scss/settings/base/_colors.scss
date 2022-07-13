@@ -59,7 +59,7 @@ $border--color: (
 
 // Icons: fill color
 $icon--color: (
-	hamburger:				get-color(light, 2),			// hamburger icon
+	hamburger:				get-color(primary, 1),			// hamburger icon
 	accordion:				get-color(primary, 1),			// accordion icon
 	social: 				get-color(primary, 1),			// social icons
 	social-hover: 			get-color(primary, 2),			// social icons (:hover)
@@ -67,7 +67,7 @@ $icon--color: (
 	modal-hover:			get-color(light, 2),			// modal icon (:hover)
     news-more:			    get-color(primary, 2),		// news - read more link arrow    
 	// ↓ Inverted colors
-	hamburger-inverse:		get-color(dark, 2),				// hamburger icon
+	hamburger-inverse:		get-color(primary, 2),				// hamburger icon
 	accordion-inverse:		get-color(primary, 1),			// accordion icon
 	social-inverse: 		null,							// social icons
 	social-hover-inverse: 	null							// social icons (:hover)

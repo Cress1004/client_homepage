@@ -162,9 +162,8 @@ function UploadCV(props) {
     <div
       style={{
         backgroundImage: "url('/background.jpg')",
-        backgroundSize: "200%",
+        backgroundSize: "500%",
       }}
-      className="reveal-from-right"
     >
       {isSubmmited ? (
         <ThanksPage />
@@ -235,7 +234,11 @@ function UploadCV(props) {
             fontSize: "14px",
           }}
         >
-          <a href="https://forms.gle/6LHENFLi5t7fpumC9" target={"_blank"} rel="noopener noreferrer">
+          <a
+            href="https://forms.gle/6LHENFLi5t7fpumC9"
+            target={"_blank"}
+            rel="noopener noreferrer"
+          >
             {" "}
             <span
               style={{
