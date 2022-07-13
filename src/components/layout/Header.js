@@ -32,6 +32,8 @@ const Header = ({
   const nav = useRef(null);
   const hamburger = useRef(null);
 
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
   useEffect(() => {
     isActive && openMenu();
     document.addEventListener("keydown", keyPress);
@@ -128,19 +130,21 @@ const Header = ({
                           Nộp CV
                         </a>
                       </li>
-                      <li>
-                        <a
-                          href={`${
-                            process.env.NODE_ENV === "production"
-                              ? process.env.REACT_APP_AZURE_MANAGER_PAGE_URL
-                              : process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL
-                          }login`}
-                          className="button button-primary button-wide-mobile button-sm"
-                          onClick={closeMenu}
-                        >
-                          Đăng nhập
-                        </a>
-                      </li>
+                      {isMobile ? null : (
+                        <li>
+                          <a
+                            href={`${
+                              process.env.NODE_ENV === "production"
+                                ? process.env.REACT_APP_AZURE_MANAGER_PAGE_URL
+                                : process.env.REACT_APP_LOCAL_MANAGER_PAGE_URL
+                            }login`}
+                            className="button button-primary button-wide-mobile button-sm"
+                            onClick={closeMenu}
+                          >
+                            Đăng nhập
+                          </a>
+                        </li>
+                      )}
                     </ul>
                   )}
                 </div>
