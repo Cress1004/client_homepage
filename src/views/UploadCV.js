@@ -165,95 +165,97 @@ function UploadCV(props) {
         backgroundSize: "500%",
       }}
     >
-      {isSubmmited ? (
-        <ThanksPage />
-      ) : (
-        <>
-          {" "}
-          <div className="upload-cv__title">{t("upload_cv")}</div>
-          <Form
-            layout="vertical"
-            className="upload-cv__form"
-            onSubmit={formik.handleSubmit}
-          >
-            <div>
-              {(() => {
-                switch (page) {
-                  case 1:
-                    return (
-                      <CVPage1
-                        t={t}
-                        formik={formik}
-                        classList={classList}
-                        cvInfo={cvInfo}
-                        changePage={changePage}
-                      />
-                    );
-                  case 2:
-                    return (
-                      <CVPage2
-                        t={t}
-                        formik={formik}
-                        cvInfo={cvInfo}
-                        questions={questions}
-                        changePage={changePage}
-                      />
-                    );
-                  case 3:
-                    return (
-                      <CVPage3
-                        t={t}
-                        formik={formik}
-                        fieldError={fieldError}
-                        changePage={changePage}
-                        setFreeTime={setFreeTime}
-                        checkFreeTime={checkFreeTime}
-                        cvInfo={cvInfo}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })()}
-            </div>
-          </Form>
-        </>
-      )}
-      <Row
-        style={{
-          width: "100%",
-          position: "flex",
-          bottom: "0px",
-        }}
-      >
-        <Col span={12}></Col>
-        <Col
-          span={12}
+      <section className="section pt-0">
+        {isSubmmited ? (
+          <ThanksPage />
+        ) : (
+          <>
+            {" "}
+            <div className="upload-cv__title">{t("upload_cv")}</div>
+            <Form
+              layout="vertical"
+              className="upload-cv__form"
+              onSubmit={formik.handleSubmit}
+            >
+              <div>
+                {(() => {
+                  switch (page) {
+                    case 1:
+                      return (
+                        <CVPage1
+                          t={t}
+                          formik={formik}
+                          classList={classList}
+                          cvInfo={cvInfo}
+                          changePage={changePage}
+                        />
+                      );
+                    case 2:
+                      return (
+                        <CVPage2
+                          t={t}
+                          formik={formik}
+                          cvInfo={cvInfo}
+                          questions={questions}
+                          changePage={changePage}
+                        />
+                      );
+                    case 3:
+                      return (
+                        <CVPage3
+                          t={t}
+                          formik={formik}
+                          fieldError={fieldError}
+                          changePage={changePage}
+                          setFreeTime={setFreeTime}
+                          checkFreeTime={checkFreeTime}
+                          cvInfo={cvInfo}
+                        />
+                      );
+                    default:
+                      return null;
+                  }
+                })()}
+              </div>
+            </Form>
+          </>
+        )}
+        <Row
           style={{
-            textAlign: "right",
-            fontSize: "14px",
+            width: "100%",
+            position: "flex",
+            bottom: "0px",
           }}
         >
-          <a
-            href="https://forms.gle/6LHENFLi5t7fpumC9"
-            target={"_blank"}
-            rel="noopener noreferrer"
+          <Col span={12}></Col>
+          <Col
+            span={12}
+            style={{
+              textAlign: "right",
+              fontSize: "14px",
+            }}
           >
-            {" "}
-            <span
-              style={{
-                fontWeight: "bold",
-                fontSize: "14px",
-                padding: "20px",
-              }}
-              className="text-color-primary"
+            <a
+              href="https://forms.gle/6LHENFLi5t7fpumC9"
+              target={"_blank"}
+              rel="noopener noreferrer"
             >
               {" "}
-              Phản hồi về hệ thống{" "}
-            </span>
-          </a>
-        </Col>
-      </Row>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "14px",
+                  padding: "20px",
+                }}
+                className="text-color-primary"
+              >
+                {" "}
+                Phản hồi về hệ thống{" "}
+              </span>
+            </a>
+          </Col>
+        </Row>
+      </section>{" "}
     </div>
   );
 }

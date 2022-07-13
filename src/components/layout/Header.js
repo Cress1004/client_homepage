@@ -80,13 +80,7 @@ const Header = ({
 
   return (
     <header {...props} className={classes}>
-      <div
-        className="container"
-        style={{
-          backgroundImage: "url('/background.jpg')",
-          backgroundSize: "100%",
-        }}
-      >
+      <div className="container">
         <div
           className={classNames(
             "site-header-inner",
