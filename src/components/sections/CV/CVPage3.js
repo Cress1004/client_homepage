@@ -41,7 +41,7 @@ function CVPage3(props) {
         title: item.text,
         key: item.key,
         dataIndex: "status",
-        width: isMobile ? 70 : 100,
+        width: isMobile ? 70 : 110,
         render: (record) => (
           <Checkbox
             text={`${item.key}-${record.key}`}
