@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, message, Row, Col } from "antd";
+import { Form, message } from "antd";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import "./style/upload-cv.scss";

@@ -42,10 +42,23 @@
     float: left;
   }
   &__free-time-table {
-    .ant-table-tbody > tr > th,
+    .ellipsis {
+      white-space: nowrap !important;
+      text-overflow: ellipsis !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
+  }
+    .ant-table-thead > tr > th {
+      text-align: center;
+      color: white;
+      background-color: #bd9f61;
+      border: solid black 1px;
+    }
+    .ant-table-tbody > tr > td,
     .ant-table-tbody > tr > td {
       text-align: center;
       background-color: white;
+      border: solid black 1px;
     }
   }
   &__note-text {
