@@ -32,6 +32,7 @@ function CVPage3(props) {
       dataIndex: "time",
       fixed: true,
       width: isMobile ? 80 : 140,
+      render: (text) => <div className="ellipsis">{text}</div>,
     },
   ];
 
@@ -50,7 +51,6 @@ function CVPage3(props) {
           />
         ),
       });
-    console.log(item);
     return null;
   });
 
@@ -91,49 +91,16 @@ function CVPage3(props) {
 
   return (
     <div>
-      <Item label={t("uploads_your_cv")} required>
-        <input
-          type="file"
-          accept=".pdf"
-          name="cvFile"
-          onChange={(e) => handleChangePDFFile(e)}
-          onBlur={formik.handleBlur}
-        />
-        {formik.errors.cvFile && formik.touched.cvFile && (
-          <span className="custom__error-message">{formik.errors.cvFile}</span>
-        )}
-      </Item>
-      <Item label={t("free_time_table")} required>
-        <Table
-          className="upload-cv__free-time-table"
-          columns={columns}
-          dataSource={fixedData}
-          pagination={false}
-          scroll={{ x: 400 }}
-          bordered={true}
-          rowClassName="upload-cv__table-row-light"
-        />
-        {formik.errors.freeTime && formik.touched.freeTime && (
-          <span className="custom__error-message">
-            {formik.errors.freeTime}
-          </span>
-        )}
-      </Item>
-      <Item label={t("free_time_note")}>
-        <TextArea
-          name="note"
-          rows={3}
-          className="upload-cv__note-text"
-          onChange={formik.handleChange}
-          defaultValue={cvInfo?.note || undefined}
-        ></TextArea>
-      </Item>
-      <span style={{ fontWeight: "bolder"}}>
+      <span style={{ fontWeight: "bolder" }}>
         {t("uploads_intro_english_audio")}
       </span>
       <br />
       {isMobile ? null : (
-        <Radio.Group onChange={onChangeOption} defaultValue={isRecord} style={{marginBottom: "10px"}}>
+        <Radio.Group
+          onChange={onChangeOption}
+          defaultValue={isRecord}
+          style={{ marginBottom: "10px" }}
+        >
           <Radio value={true}>{t("live_recording")}</Radio>
           <Radio value={false}>{t("upload_file")}</Radio>
         </Radio.Group>
@@ -167,6 +134,43 @@ function CVPage3(props) {
           </Item>
         </>
       )}
+      <Item label={t("uploads_your_cv")} required>
+        <input
+          type="file"
+          accept=".pdf"
+          name="cvFile"
+          onChange={(e) => handleChangePDFFile(e)}
+          onBlur={formik.handleBlur}
+        />
+        {formik.errors.cvFile && formik.touched.cvFile && (
+          <span className="custom__error-message">{formik.errors.cvFile}</span>
+        )}
+      </Item>
+      <Item label={t("free_time_table")} required>
+        <Table
+          className="upload-cv__free-time-table"
+          columns={columns}
+          dataSource={fixedData}
+          pagination={false}
+          scroll={{ x: 400 }}
+          // bordered={true}
+          rowClassName="upload-cv__table-row-light"
+        />
+        {formik.errors.freeTime && formik.touched.freeTime && (
+          <span className="custom__error-message">
+            {formik.errors.freeTime}
+          </span>
+        )}
+      </Item>
+      <Item label={t("free_time_note")}>
+        <TextArea
+          name="note"
+          rows={3}
+          className="upload-cv__note-text"
+          onChange={formik.handleChange}
+          defaultValue={cvInfo?.note || undefined}
+        ></TextArea>
+      </Item>
       <Item>
         <Button
           onClick={() => changePage(-1)}
