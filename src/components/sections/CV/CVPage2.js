@@ -13,17 +13,18 @@ function CVPage2(props) {
     const currentAnswerIndex = answers.findIndex(
       (item) => item.questionId === question._id
     );
-    if (currentAnswerIndex !== -1) {
-      answers[currentAnswerIndex].questionId = question._id;
-      answers[currentAnswerIndex].content = e.target.value;
-    } else
-      answers.push({
-        questionId: question._id,
-        content: e.target.value,
-      });
+    answers[currentAnswerIndex].content = e.target.value;
     formik.setFieldValue("answers", answers);
   };
-  
+
+  const checkFillAllAnswer = (answers) => {
+    const notFillAnswers = answers.filter((answer) => {
+      return answer.isRequired && answer.content === "";
+    });
+    if (notFillAnswers.length === 0) return true;
+    else return false;
+  };
+
   return (
     <div>
       <h6>{t("answer_below_questions")}</h6>
@@ -54,6 +55,7 @@ function CVPage2(props) {
         <Button
           onClick={() => changePage(1)}
           className={`upload-cv__button-next`}
+          disabled={!checkFillAllAnswer(formik.values.answers)}
         >
           {t("next_page")}
         </Button>

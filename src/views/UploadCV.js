@@ -38,6 +38,12 @@ function UploadCV(props) {
     const data = await apis.cvQuestion.getQuestions();
     if (data?.success) {
       setQuestions(data.questions);
+      const questions = data.questions.map((question) => ({
+        questionId: question._id,
+        content: "",
+        isRequired: question.isRequired,
+      }));
+      formik.setFieldValue("answers", questions);
     } else if (!data.success) {
       message.error(data.message);
     } else {

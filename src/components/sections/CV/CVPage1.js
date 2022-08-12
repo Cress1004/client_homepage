@@ -9,6 +9,14 @@ const { Option } = Select;
 
 function CVPage1(props) {
   const { t, formik, classList, cvInfo, changePage } = props;
+  const errorField = () => {
+    return (
+      formik.errors.userName ||
+      formik.errors.email ||
+      formik.errors.phoneNumber ||
+      formik.errors.selectedClass
+    );
+  };
   return (
     <div>
       <Item label={t("user_name")} required>
@@ -80,6 +88,7 @@ function CVPage1(props) {
         <Button
           onClick={() => changePage(1)}
           className={`upload-cv__button-next`}
+          disabled={errorField()}
         >
           {t("next_page")}
         </Button>
